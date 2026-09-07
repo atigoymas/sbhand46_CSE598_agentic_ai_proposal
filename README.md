@@ -37,11 +37,15 @@ This runs a fixed test question ("How many employees report to Neena Kochhar?") 
 
 | File | Purpose |
 |---|---|
-| `employee_dataset.csv` | Dataset: Oracle HR sample `employees` table (50 rows) |
+| `employee_dataset.csv` | **Input file**/Dataset: Oracle HR sample `employees` table (50 rows) |
 | `load_data.py` | Loads the CSV into an in-memory SQLite table using an explicit, hardcoded schema |
 | `schema_desc.py` | Builds the schema description text sent to the model (column list, `JOB_ID` pattern description, dynamic distinct-value lists) |
 | `agent_code.py` | `generate_sql_with_retries(...)`, the self-correcting SQL generation loop |
-| `main.py` | Entry point; wires everything together and prints the boxed attempt log |
+| `main.py` | Entry point; wires everything together and prints the boxed attempt log|
+**Output prints out at the terminal itself after executing main.py**.
+```
+python main.py
+```
 
 ## Known setup limitations
 
