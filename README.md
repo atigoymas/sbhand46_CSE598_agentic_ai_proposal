@@ -1,6 +1,6 @@
 # NL-SQL Self-Correcting Agent
 
-A natural-language-to-SQL agent with execution-feedback self-correction: it generates SQL for a question, executes it against SQLite, and — if execution fails — feeds the error back to the model and retries, up to a bounded number of attempts.
+A natural-language-to-SQL agent with execution-feedback self-correction: it generates SQL for a question, executes it against SQLite, and, if execution fails, feeds the error back to the model and retries, up to a bounded number of attempts.
 
 ## Setup
 
@@ -40,11 +40,10 @@ This runs a fixed test question ("How many employees report to Neena Kochhar?") 
 | `employee_dataset.csv` | Dataset: Oracle HR sample `employees` table (50 rows) |
 | `load_data.py` | Loads the CSV into an in-memory SQLite table using an explicit, hardcoded schema |
 | `schema_desc.py` | Builds the schema description text sent to the model (column list, `JOB_ID` pattern description, dynamic distinct-value lists) |
-| `agent_code.py` | `generate_sql_with_retries(...)` — the self-correcting SQL generation loop |
+| `agent_code.py` | `generate_sql_with_retries(...)`, the self-correcting SQL generation loop |
 | `main.py` | Entry point; wires everything together and prints the boxed attempt log |
 
 ## Known setup limitations
 
-- The dataset is loaded fresh into an in-memory SQLite database on every run — nothing is persisted between runs.
+- The dataset is loaded fresh into an in-memory SQLite database on every run; nothing is persisted between runs.
 - `GEMINI_MODEL` has no hardcoded default; it must be set in `.env` or the run will fail with a missing-model error.
-- See `PROPOSAL.md` Section 7 for functional limitations of the agent itself.
