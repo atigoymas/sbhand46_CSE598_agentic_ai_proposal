@@ -23,6 +23,12 @@ def print_attempt(attempt_record: dict, max_attempts: int):
         print("  " + attempt_record["error"])
     print()
 
+def format_result(rows):
+    if not rows:
+        return "(no rows)"
+    if len(rows) == 1 and len(rows[0]) == 1:
+        return str(rows[0][0])
+    return str(rows)
 
 def main():
     conn = sqlite3.connect(":memory:")
